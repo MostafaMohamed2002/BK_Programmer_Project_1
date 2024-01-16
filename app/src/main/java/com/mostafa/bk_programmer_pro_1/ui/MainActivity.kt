@@ -7,13 +7,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.mostafa.bk_programmer_pro_1.R
+import com.mostafa.bk_programmer_pro_1.databinding.ActivityMainBinding
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
 class MainActivity : AppCompatActivity() {
+    var _binding : ActivityMainBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        _binding= ActivityMainBinding.inflate(layoutInflater)
+        setContentView(_binding?.root)
         openFile()
     }
     private fun openFile(){
