@@ -8,11 +8,17 @@ import androidx.core.view.WindowInsetsCompat
 import com.mostafa.bk_programmer_pro_1.R
 import com.mostafa.bk_programmer_pro_1.databinding.ActivitySearchBinding
 
-class SearchActivity : AppCompatActivity() {
-    var _binding : ActivitySearchBinding? = null
+class SearchActivity : BaseActivity<ActivitySearchBinding>() {
+    override val LOG_TAG: String = "SEARCH_ACTIVITY"
+    override val bindingInflater: (layoutInflater: android.view.LayoutInflater) -> ActivitySearchBinding = ActivitySearchBinding::inflate
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding= ActivitySearchBinding.inflate(layoutInflater)
-        setContentView(_binding?.root)
+        enableEdgeToEdge()
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            binding.root.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
     }
+
 }
