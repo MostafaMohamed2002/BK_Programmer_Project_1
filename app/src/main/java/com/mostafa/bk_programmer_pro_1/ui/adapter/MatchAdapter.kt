@@ -22,12 +22,12 @@ class MatchAdapter(val list: List<Match>) : RecyclerView.Adapter<MatchVIewHolder
 
     override fun onBindViewHolder(holder: MatchVIewHolder, position: Int) {
         val currentMatch = list.get(position)
-        holder.apply {
-            yearTextView.text = currentMatch.year.toString()
-            homeTeamNameTextView.text = currentMatch.homeTeamName.toString()
-            homeTeamGoalsTextView.text = currentMatch.homeTeamGoals.toString()
-            awayTeamNameTextView.text = currentMatch.awayTeamName.toString()
-            awayTeamGoalsTextView.text = currentMatch.awayTeamGoals.toString()
+        holder._binding.apply {
+            yearTextViewR.text = currentMatch.year.toString()
+            homeTeamNameTextViewR.text = currentMatch.homeTeamName.toString()
+            homeTeamGoalsTextViewR.text = currentMatch.homeTeamGoals.toString()
+            awayTeamNameTextViewR.text = currentMatch.awayTeamName.toString()
+            awayTeamGoalsTextViewR.text = currentMatch.awayTeamGoals.toString()
 
         }
 
