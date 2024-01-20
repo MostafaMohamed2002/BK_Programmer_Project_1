@@ -13,23 +13,42 @@ import java.io.InputStreamReader
 
 class MainActivity : AppCompatActivity() {
     var _binding: ActivityMainBinding? = null
+    lateinit var matchAdapter: MatchAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
         parseFile()
         runRecyclerView()
+        addCallBack()
     }
 
-    private fun runRecyclerView() {
+    fun runRecyclerView() {
         /*
                 val llm = LinearLayoutManager(this)
                 llm.orientation = LinearLayoutManager.VERTICAL
         */
-        val matchAdapter = MatchAdapter(DataManager.getMatches)
+        matchAdapter = MatchAdapter(DataManager.getMatches)
         _binding?.recyclerView?.adapter = matchAdapter
 //        _binding?.recyclerView?.setLayoutManager(llm)
     }
+
+    private fun addCallBack() {
+        _binding?.floatingActionButton?.setOnClickListener {
+            val newMatch = Match(
+                year = 2020,
+                stadium = "blabla",
+                homeTeamName = "eg",
+                homeTeamGoals = 10,
+                awayTeamName = "egy",
+                awayTeamGoals = 20,
+                city = "bla"
+            )
+            DataManager.addMatchAtEnd(newMatch)
+            matchAdapter.setNewData(DataManager.getMatches)
+        }
+    }
+
 
     private fun parseFile() {
         val inputStream = assets.open("worldcup.csv")

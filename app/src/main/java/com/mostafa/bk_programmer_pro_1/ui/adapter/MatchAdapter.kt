@@ -8,7 +8,7 @@ import com.mostafa.bk_programmer_pro_1.data.DataManager
 import com.mostafa.bk_programmer_pro_1.data.domain.Match
 import com.mostafa.bk_programmer_pro_1.ui.viewHolder.MatchVIewHolder
 
-class MatchAdapter(val list: List<Match>) : RecyclerView.Adapter<MatchVIewHolder>() {
+class MatchAdapter(private var list: List<Match>) : RecyclerView.Adapter<MatchVIewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchVIewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.card_view_item, parent, false)
@@ -18,6 +18,11 @@ class MatchAdapter(val list: List<Match>) : RecyclerView.Adapter<MatchVIewHolder
 
     override fun getItemCount(): Int {
         return DataManager.getMatchesCount
+    }
+
+    fun setNewData(list: List<Match>) {
+        this.list = list
+        notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: MatchVIewHolder, position: Int) {
