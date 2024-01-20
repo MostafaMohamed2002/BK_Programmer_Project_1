@@ -2,7 +2,6 @@ package com.mostafa.bk_programmer_pro_1.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.mostafa.bk_programmer_pro_1.data.DataManager
 import com.mostafa.bk_programmer_pro_1.data.domain.Match
 import com.mostafa.bk_programmer_pro_1.databinding.ActivityMainBinding
@@ -23,11 +22,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun runRecyclerView() {
-        val llm = LinearLayoutManager(this)
-        llm.orientation = LinearLayoutManager.VERTICAL
+        /*
+                val llm = LinearLayoutManager(this)
+                llm.orientation = LinearLayoutManager.VERTICAL
+        */
         val matchAdapter = MatchAdapter(DataManager.getMatches)
         _binding?.recyclerView?.adapter = matchAdapter
-        _binding?.recyclerView?.setLayoutManager(llm)
+//        _binding?.recyclerView?.setLayoutManager(llm)
     }
 
     private fun parseFile() {
