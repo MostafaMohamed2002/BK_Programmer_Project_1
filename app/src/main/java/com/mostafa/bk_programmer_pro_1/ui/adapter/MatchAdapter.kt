@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mostafa.bk_programmer_pro_1.R
 import com.mostafa.bk_programmer_pro_1.data.DataManager
 import com.mostafa.bk_programmer_pro_1.data.domain.Match
+import com.mostafa.bk_programmer_pro_1.ui.MainActivity
 import com.mostafa.bk_programmer_pro_1.ui.viewHolder.MatchVIewHolder
 
 class MatchAdapter(private var list: List<Match>) : RecyclerView.Adapter<MatchVIewHolder>() {
+    val mainActivity = MainActivity()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchVIewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.card_view_item, parent, false)
@@ -33,9 +35,12 @@ class MatchAdapter(private var list: List<Match>) : RecyclerView.Adapter<MatchVI
             homeTeamGoalsTextViewR.text = currentMatch.homeTeamGoals.toString()
             awayTeamNameTextViewR.text = currentMatch.awayTeamName.toString()
             awayTeamGoalsTextViewR.text = currentMatch.awayTeamGoals.toString()
+            imageButton.setOnClickListener {
+                imageButtonClick?.invoke(currentMatch)
+            }
 
         }
-
     }
 
+    var imageButtonClick: ((Match) -> Unit)? = null
 }

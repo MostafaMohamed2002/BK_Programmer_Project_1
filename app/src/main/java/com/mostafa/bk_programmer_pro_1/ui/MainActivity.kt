@@ -6,6 +6,7 @@ import com.mostafa.bk_programmer_pro_1.data.DataManager
 import com.mostafa.bk_programmer_pro_1.data.domain.Match
 import com.mostafa.bk_programmer_pro_1.databinding.ActivityMainBinding
 import com.mostafa.bk_programmer_pro_1.ui.adapter.MatchAdapter
+import com.mostafa.bk_programmer_pro_1.ui.viewHolder.MatchVIewHolder
 import com.mostafa.bk_programmer_pro_1.util.CsvParser
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -14,6 +15,7 @@ import java.io.InputStreamReader
 class MainActivity : AppCompatActivity() {
     var _binding: ActivityMainBinding? = null
     lateinit var matchAdapter: MatchAdapter
+    lateinit var matchVIewHolder: MatchVIewHolder
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         matchAdapter = MatchAdapter(DataManager.getMatches)
         _binding?.recyclerView?.adapter = matchAdapter
 //        _binding?.recyclerView?.setLayoutManager(llm)
+
     }
 
     private fun addCallBack() {
@@ -45,6 +48,10 @@ class MainActivity : AppCompatActivity() {
                 city = "bla"
             )
             DataManager.addMatchAtEnd(newMatch)
+            matchAdapter.setNewData(DataManager.getMatches)
+        }
+        matchAdapter.imageButtonClick = { match ->
+            DataManager.removeMatch(match)
             matchAdapter.setNewData(DataManager.getMatches)
         }
     }
