@@ -21,6 +21,10 @@ object DataManager {
         return matchesList[matchIndex]
     }
 
+    fun removeMatchAt(index: Int) {
+        matchesList.removeAt(index)
+    }
+
     fun getNextMatch(): Match {
         //handle end of array error
         if (matchIndex + 1 == matchesList.size - 1) {
