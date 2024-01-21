@@ -5,12 +5,16 @@ import com.mostafa.bk_programmer_pro_1.data.domain.Match
 object DataManager {
     private val matchesList = mutableListOf<Match>()
     val getMatches: List<Match>
-        get() = matchesList.reversed()
+        get() = matchesList.toList()
     val getMatchesCount: Int
         get() = matchesList.size
     var matchIndex = 0
     fun addMatchAtEnd(match: Match) {
         matchesList.add(matchesList.size, match)
+    }
+
+    fun addMatchAt(index: Int, match: Match) {
+        matchesList.add(index, match)
     }
 
     fun addMatch(match: Match) {

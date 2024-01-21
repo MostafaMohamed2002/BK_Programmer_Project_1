@@ -2,12 +2,14 @@ package com.mostafa.bk_programmer_pro_1.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mostafa.bk_programmer_pro_1.R
 import com.mostafa.bk_programmer_pro_1.data.DataManager
 import com.mostafa.bk_programmer_pro_1.data.domain.Match
 import com.mostafa.bk_programmer_pro_1.ui.MainActivity
 import com.mostafa.bk_programmer_pro_1.ui.viewHolder.MatchVIewHolder
+import com.mostafa.bk_programmer_pro_1.util.MatchDiffUtil
 
 class MatchAdapter(private var list: List<Match>) : RecyclerView.Adapter<MatchVIewHolder>() {
     val mainActivity = MainActivity()
@@ -23,12 +25,13 @@ class MatchAdapter(private var list: List<Match>) : RecyclerView.Adapter<MatchVI
     }
 
     fun setNewData(list: List<Match>) {
+        val difftUtil = DiffUtil.calculateDiff(MatchDiffUtil(this.list, list))
         this.list = list
-        notifyDataSetChanged()
+        difftUtil.dispatchUpdatesTo(this)
     }
 
     override fun onBindViewHolder(holder: MatchVIewHolder, position: Int) {
-        val currentMatch = list.get(position)
+        val currentMatch = list[position]
         holder._binding.apply {
             yearTextViewR.text = currentMatch.year.toString()
             homeTeamNameTextViewR.text = currentMatch.homeTeamName.toString()

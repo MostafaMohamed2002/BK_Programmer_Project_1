@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                 awayTeamGoals = 20,
                 city = "bla"
             )
-            DataManager.addMatchAtEnd(newMatch)
+            DataManager.addMatchAt(0, newMatch)
             matchAdapter.setNewData(DataManager.getMatches)
         }
         matchAdapter.imageButtonClick = { match ->
